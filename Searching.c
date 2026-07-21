@@ -1,11 +1,12 @@
 #include<stdio.h>
 int arr[100];
 
+//Functions
 int menu();
 int ls_itr(int,int);
 int ls_rec(int,int,int);
-// int bs_itr();
-// int bs_rec();
+int bs_itr(int,int,int);
+int bs_rec(int,int,int);
 int array_maker(int);
 
 int main(){
@@ -30,13 +31,11 @@ int main(){
             found = ls_rec(0,num,n);
             break;
         case 3:
-            // found = bs_itr();
-            // menu();
-            // break;
+            found = bs_itr():
+            break;
         case 4:
-            // found = bs_rec();
-            // menu();
-            // break;
+            found = bs_rec(0,n-1,num):
+            break;
         case 5:
             break;
         default:
@@ -69,6 +68,7 @@ int array_maker(int n){
     }
 }
 
+//Linear Search(Iterative)
 int ls_itr(int n,int num){
     for(int i=0;i<=n-1;i++){
         if(arr[i]==num){
@@ -78,6 +78,7 @@ int ls_itr(int n,int num){
     return -1;
 }
 
+//Linear Search(Recursive)
 int ls_rec(int i, int num, int n){
     if(i>=n){
         return -1;
@@ -89,4 +90,35 @@ int ls_rec(int i, int num, int n){
     }
 }
 
-int bs_itr(int i)
+//Binary Search(Recursive)
+int bs_rec(int lb, int ub, int num){
+    mid = (lb+ub)/2;
+    if(lb>ub){
+        return -1;
+    }else{
+        if(arr[mid]==num){
+            return mid;
+        }else if(arr[mid]>num){
+            bs_rec(lb,mid-1,num);
+        }else{
+            bs_rec(mid+1,ub,num);
+        }
+    }
+}
+
+//Binary Search(Iterative)
+int bs_itr(int lb, int ub, int num){
+    int mid;
+    mid = (lb+ub)/2;
+    while(lb<=ub){
+        if(arr[mid]==num){
+            return mid;
+        }else if(arr[mid]>num){
+            ub = mid-1;
+        }else{
+            lb = mid+1;
+        }
+        mid = (lb+ub)/2;
+    }
+    return -1;
+}
